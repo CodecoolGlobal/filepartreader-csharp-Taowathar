@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FilePartReaderWithTests.Lib</name>
+    </assembly>
+    <members>
+        <member name="T:FilePartReaderWithTests.Lib.FilePartReader">
+            Parses the file's content into String
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FilePartReader.setup(System.String,System.Int32,System.Int32)">
+            Setup or fail as soon as you can approach: if something is wrong throw an excption
+            @param filePath file name with full path
+            @param fromLine line number where we start getting lines
+            @param toLine number of last line we include when reading
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FilePartReader.Read">
+            Gives back all the content of the file, doesn't care about from/toLine
+            @return the content of the whole file as a String
+            @throws IOException if the file can't be accessed
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FilePartReader.ReadLines">
+            Reads the lines from the line in fromLine to the line in toLine
+            @return the content of file between fromLine and toLine as a string
+            @throws IOException if can't access the file
+        </member>
+        <member name="T:FilePartReaderWithTests.Lib.FileWordAnalyzer">
+            Uses a FilePartReader to open a file and analyze different aspects of it
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FileWordAnalyzer.GetLinesAsList">
+            Gets the lines configured in FilePartReader from the file and
+            separates them to a list
+            @return list of lines read from the file
+            @throws IOException if can't access the file
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FileWordAnalyzer.IsPalindrome(System.String)">
+            Checks if an input (can be a word or a line) is palindrome. Case insensitive.
+            @param input the input that needs to be checked
+            @return true if it is a palindrome
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FileWordAnalyzer.GetWordsOrderedAlphabetically">
+            Gets the lines configured from FilePartReader and creates a list
+            of lines out of them, and sorts into natural order
+            @return the list of lines ordered in natural order
+            @throws IOException if can't access the file
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FileWordAnalyzer.GetWordsContainingSubstring(System.String)">
+            Returns the lines containing the given sub-string
+            @param subString the sub-string we are looking for in the file
+            @return the lines containing the sub-string.OrderBy(x => x, StringComparer.OrdinalIgnoreCase);
+            @throws IOException if can't access the file
+        </member>
+        <member name="M:FilePartReaderWithTests.Lib.FileWordAnalyzer.GetStringsWhichPalindromes">
+            Returns the lines (not only words) which are palindrome. Doesn't care
+            of the capital - non-capital character differences
+            @return all the lines which are palindrome as a list
+            @throws IOException if can't access the file
+        </member>
+    </members>
+</doc>
