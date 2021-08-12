@@ -39,7 +39,16 @@ namespace Codecool.FilePartReader
         /// <param name="toLine">ToLine number of last line we include when reading</param>
         public void Setup(string filePath, int fromLine, int toLine)
         {
-            throw new NotImplementedException();
+            if (toLine < fromLine || fromLine < 1)
+            {
+                throw new ArgumentException();
+            }
+            else
+            {
+                FilePath = filePath;
+                FromLine = fromLine;
+                ToLine = toLine;
+            }
         }
 
         /// <summary>
@@ -48,7 +57,8 @@ namespace Codecool.FilePartReader
         /// <returns>The content of the whole file as a String</returns>
         public string Read()
         {
-            throw new NotImplementedException();
+            string text = System.IO.File.ReadAllText(FilePath);
+            return text;
         }
 
         /// <summary>
@@ -57,7 +67,16 @@ namespace Codecool.FilePartReader
         /// <returns>The content of file between fromLine and toLine as a string</returns>
         public string ReadLines()
         {
-            throw new NotImplementedException();
+            StringBuilder result = new StringBuilder();
+            string text = Read();
+            string[] lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+            for (var i = FromLine - 1; i <= ToLine - 1; i++)
+            {
+                result.Append(lines[i]);
+                if (i != ToLine - 1) result.Append("\r\n");
+            }
+
+            return result.ToString();
         }
     }
 }
