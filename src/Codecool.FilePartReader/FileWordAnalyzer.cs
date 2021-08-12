@@ -27,7 +27,16 @@ namespace Codecool.FilePartReader
         /// <returns>The list of lines ordered in natural order</returns>
         public List<string> GetWordsOrderedAlphabetically()
         {
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            string text = _filePartReader.ReadLines();
+            string[] words = text.Split(" ");
+            foreach (var word in words)
+            {
+                result.Add(word.Trim('.'));
+            }
+
+            result.Sort();
+            return result;
         }
 
         /// <summary>
