@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.XPath;
 
 namespace Codecool.FilePartReader
 {
@@ -29,10 +30,13 @@ namespace Codecool.FilePartReader
         {
             List<string> result = new List<string>();
             string text = _filePartReader.ReadLines();
-            string[] words = text.Split(" ");
+            string[] words = text.Split(' ', '\n', '\r');
             foreach (var word in words)
             {
-                result.Add(word.Trim('.'));
+                if (word != string.Empty)
+                {
+                    result.Add(word.Trim('.'));
+                }
             }
 
             result.Sort();
@@ -46,7 +50,17 @@ namespace Codecool.FilePartReader
         /// <returns>The lines containing the sub-string.OrderBy(x =&gt; x, StringComparer.OrdinalIgnoreCase);</returns>
         public List<string> GetWordsContainingSubstring(string subString)
         {
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            List<string> words = GetWordsOrderedAlphabetically();
+            foreach (var word in words)
+            {
+                if (word.Contains(subString))
+                {
+                    result.Add(word);
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
