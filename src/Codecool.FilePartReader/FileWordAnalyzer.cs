@@ -90,5 +90,31 @@ namespace Codecool.FilePartReader
 
             return result;
         }
+
+        /// <summary>
+        /// returns the words from the string which are palindrome. Doesn't care
+        /// of the capital - non-capital character differences
+        /// </summary>
+        /// <returns>All the lines which are containing palindrome as a list</returns>
+        public List<string> WordsArePalindrome()
+        {
+            List<string> result = new List<string>();
+            List<string> words = GetWordsOrderedAlphabetically();
+            foreach (var word in words)
+            {
+                string reverseWord = String.Empty;
+                for (int i = word.Length - 1; i >= 0; i--)
+                {
+                    reverseWord += word[i];
+                }
+
+                if (word.Length > 1 && string.Equals(word, reverseWord, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    result.Add(word);
+                }
+            }
+
+            return result;
+        }
     }
 }
