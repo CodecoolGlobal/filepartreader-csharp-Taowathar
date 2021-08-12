@@ -70,7 +70,25 @@ namespace Codecool.FilePartReader
         /// <returns>All the lines which are palindrome as a list</returns>
         public List<string> GetStringsWhichPalindromes()
         {
-            throw new NotImplementedException();
+            List<string> result = new List<string>();
+            string text = _filePartReader.ReadLines();
+            string[] lines = text.Split("\r\n");
+            foreach (var line in lines)
+            {
+                Console.WriteLine(line);
+                string reverseLine = String.Empty;
+                for (int i = line.Length - 1; i >= 0; i--)
+                {
+                    reverseLine += line[i];
+                }
+
+                if (string.Equals(line.Replace(" ", string.Empty), reverseLine.Replace(" ", String.Empty), StringComparison.CurrentCultureIgnoreCase))
+                {
+                    result.Add(line);
+                }
+            }
+
+            return result;
         }
     }
 }
