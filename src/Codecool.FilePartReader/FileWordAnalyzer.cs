@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.XPath;
 
 namespace Codecool.FilePartReader
 {
@@ -75,7 +73,6 @@ namespace Codecool.FilePartReader
             string[] lines = text.Split("\r\n");
             foreach (var line in lines)
             {
-                Console.WriteLine(line);
                 string reverseLine = String.Empty;
                 for (int i = line.Length - 1; i >= 0; i--)
                 {

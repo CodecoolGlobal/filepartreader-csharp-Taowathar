@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NUnit.Framework;
 
 namespace Codecool.FilePartReader.UnitTests
@@ -24,6 +23,7 @@ namespace Codecool.FilePartReader.UnitTests
         {
 
             var sortedWords = new List<string>(new string[] {"All", "Bring", "Creature", "creeping", "darkness", "days", "divide", "divide", "divided", "Fly", "Fly", "forth", "from", "gathering", "great", "greater", "heaven", "In", "itself", "moving", "night", "Saying", "Seas", "she'd", "spirit", "The", "There", "to", "to", "unto", "Whales", "yielding"});
+            Console.WriteLine(_fileWordAnalyzer.GetWordsOrderedAlphabetically());
             Assert.AreEqual(sortedWords, _fileWordAnalyzer.GetWordsOrderedAlphabetically());
         }
 
@@ -46,7 +46,7 @@ namespace Codecool.FilePartReader.UnitTests
         [Test]
         public void WordsArePalindrome_AssertEqual()
         {
-                        _filePartReader.Setup("../../../../../Data/test.txt", 19, 21);
+            _filePartReader.Setup("../../../../../Data/test.txt", 19, 21);
             _fileWordAnalyzer = new FileWordAnalyzer(_filePartReader);
             var lines = new List<string>(new string[] { "ere", "Xanax" });
             Assert.AreEqual(lines, _fileWordAnalyzer.WordsArePalindrome());
